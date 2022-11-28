@@ -102,6 +102,146 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    // Step 2
+    let consoleLog = errorBtns[0];
+    consoleLog.addEventListener("click", ()=> {
+      console.log("Console Log");
+    })
+
+    let consoleError = errorBtns[1];
+    consoleError.addEventListener("click", ()=> {
+      console.error("Console Error");
+    })
+
+    let consoleCount = errorBtns[2];
+    consoleCount.addEventListener("click", ()=> {
+      console.count("Count Button");
+    })
+
+    let consoleWarn = errorBtns[3];
+    consoleWarn.addEventListener("click", ()=> {
+      console.warn("Console Warn");
+    })
+
+    let consoleAssert = errorBtns[4];
+    consoleAssert.addEventListener("click", ()=> {
+      let num = 4;
+      console.assert(num % 2 == 1, "The number is not odd!");
+    })
+
+    let consoleClear = errorBtns[5];
+    consoleClear.addEventListener("click", ()=> {
+      console.clear();
+    })
+
+    let consoleDir = errorBtns[6];
+    consoleDir.addEventListener("click", ()=> {
+      console.dir(consoleDir);
+    });
+
+    let consoleDirxml = errorBtns[7];
+    consoleDirxml.addEventListener("click", ()=> {
+      console.dirxml(consoleDirxml);
+    });
+
+    let consoleGStart = errorBtns[8];
+    consoleGStart.addEventListener("click", ()=> {
+      console.group();
+    })
+
+    let consoleGEnd = errorBtns[9];
+    consoleGEnd.addEventListener("click", ()=> {
+      console.groupEnd();
+    })
+
+    let consoleTable = errorBtns[10];
+    consoleTable.addEventListener("click", ()=> {
+      console.table(["Indonesia","America","China"]);
+    })
+
+    const timeStart=errorBtns[11];
+    timeStart.addEventListener("click",()=>{
+      console.time("Console time");
+    })
+
+    //console time end
+    const timeEnd=errorBtns[12];
+    timeEnd.addEventListener("click",()=>{
+      console.timeEnd("Console time");
+    })
+  
+    function function1(){
+      function function2(){
+        function function3(){
+          console.trace();
+        }
+        function3();
+      }
+      function2();
+    }
+
+    let consoleTrace = errorBtns[13];
+    consoleTrace.addEventListener("click", ()=> {
+      function1();
+    })
+
+  // Step 3
+  try{
+    let val = 'Value found!';
+    let myButton = document.querySelector("#test-value");
+    myButton.addEventListener("click",()=> {
+      console.log(val);
+    });
+  } catch(err){
+    console.log("Error occurs!");
+  }
+
+  // Step 4
+  class ValidationError extends Error{
+    constructor(message){
+      super(message);
+      this.name="ValidationError";
+    }
+  }
+
+  function readEmployee(string){
+    let employee = JSON.parse(string);
+    if(!employee.name){
+      throw new ValidationError("Field Missing: name");
+    }
+    if(!employee.id){
+      throw new ValidationError("Field Missing: id");
+    }
+  }
+
+  try{
+    let employee = readEmployee('{"id": "B1903135"}');
+  } catch (err) {
+    if (err instanceof ValidationError) {
+      console.log("Invalid data: " + err.message); 
+    } else if (err instanceof SyntaxError) {
+      console.log("JSON Syntax Error: " + err.message);
+    } else {
+      throw err;
+    }
+  }
+
+  // Step 5
+  let globalError = errorBtns[14];
+  window.addEventListener("error", ()=> {
+    console.log("Global error occurs!");
+  })
+
+  globalError.addEventListener("click", ()=> {
+    let errorCode = "let val;$";
+    eval(errorCode);
+  })
+  </script>
+</body>
+
+</html>
+
   </script>
 </body>
 
